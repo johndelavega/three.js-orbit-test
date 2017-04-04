@@ -1,0 +1,101 @@
+<!-- <!DOCTYPE html> not required? -->
+
+<!-- js source code origin https://github.com/mrdoob/three.js/  -->
+
+<!-- https://en.wikipedia.org/wiki/Three.js -->
+
+<!-- https://threejs.org/ -->
+
+<!-- works on chrome firefox edge -->
+
+<!-- js/controls/OrbitControls.js -->
+
+<!-- 07:05 PM 03/18/2017, Saturday  -->
+
+
+<html>
+
+
+
+
+<body>
+
+    test OrbitControls.js version 000 - rotating rectangle<br><br> 
+    three.js | js/controls/OrbitControls.js <br>
+    three.min.js r84 2017-01-19<br><br><br>
+
+    <script src="three.min.js"></script>
+    <script src="js/controls/OrbitControls.js"></script>
+
+
+    <script>
+
+       // <!-- js source code origin https://github.com/mrdoob/three.js/  -->
+
+        var windowSizeFactore = 0.80;
+
+        var scene, camera, renderer;
+        var geometry, material, mesh;
+
+        init();
+        animate();
+
+        function init() {
+
+            scene = new THREE.Scene();
+
+            camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+            camera.position.z = 1000;
+
+            geometry = new THREE.BoxGeometry( 200, 500, 600 );
+            material = new THREE.MeshBasicMaterial( { color: Math.random() * 0xffffff, wireframe: true } );
+
+            mesh = new THREE.Mesh( geometry, material );
+            scene.add( mesh );
+
+            renderer = new THREE.WebGLRenderer();
+            renderer.setSize( window.innerWidth * windowSizeFactore, window.innerHeight * windowSizeFactore );
+
+            document.body.appendChild( renderer.domElement );
+
+
+            var controls = new THREE.OrbitControls( camera, renderer.domElement );
+            controls.target.set( 0, 0, 0 );
+            controls.update();
+
+            window.addEventListener( 'resize', onWindowResize, false );
+
+        }
+
+
+        function onWindowResize() {
+
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+
+            renderer.setSize( window.innerWidth * windowSizeFactore, window.innerHeight * windowSizeFactore );
+
+        }
+        
+
+        function animate() {
+
+            requestAnimationFrame( animate );
+
+            mesh.rotation.x += 0.01;
+            mesh.rotation.y += 0.02;
+
+            renderer.render( scene, camera );
+
+        }
+
+
+    </script>    
+
+
+
+</body>    
+
+
+
+</html>    
