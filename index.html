@@ -16,11 +16,9 @@
 <html>
 
 
-
-
 <body>
 
-    test OrbitControls.js version 000 - rotating rectangle<br><br> 
+    test OrbitControls.js version 001 - rotating cube<br><br> 
     three.js | js/controls/OrbitControls.js <br>
     three.min.js r84 2017-01-19<br><br><br>
 
@@ -47,10 +45,16 @@
             camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
             camera.position.z = 1000;
 
-            geometry = new THREE.BoxGeometry( 200, 500, 600 );
+            geometry = new THREE.BoxGeometry( 300, 300, 300 );
             material = new THREE.MeshBasicMaterial( { color: Math.random() * 0xffffff, wireframe: true } );
 
-            mesh = new THREE.Mesh( geometry, material );
+            var materialNormal = new THREE.MeshNormalMaterial({
+                transparent: true,
+                opacity: 0.8
+            });
+
+
+            mesh = new THREE.Mesh( geometry, materialNormal );
             scene.add( mesh );
 
             renderer = new THREE.WebGLRenderer();
